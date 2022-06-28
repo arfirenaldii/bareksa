@@ -23,6 +23,7 @@ import messages from './messages';
 import { resetState, fetchOrders } from './actions';
 
 import OrderTable from './components/OrderTable';
+import PieChart from './components/PieChart';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.Component {
@@ -38,6 +39,7 @@ export class Home extends React.Component {
           <meta name="description" content="Description of Home" />
         </Helmet>
         <FormattedMessage {...messages.header} />
+        <PieChart {...this.props} />
         <div style={{ fontSize: '24px', fontWeight: '700' }}>
           {"Orders"}
         </div>
