@@ -22,6 +22,8 @@ import messages from './messages';
 
 import { resetState, fetchOrders } from './actions';
 
+import OrderTable from './components/OrderTable';
+
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.Component {
   componentDidMount() {
@@ -36,6 +38,10 @@ export class Home extends React.Component {
           <meta name="description" content="Description of Home" />
         </Helmet>
         <FormattedMessage {...messages.header} />
+        <div style={{ fontSize: '24px', fontWeight: '700' }}>
+          {"Orders"}
+        </div>
+        <OrderTable {...this.props} />
       </div>
     );
   }
