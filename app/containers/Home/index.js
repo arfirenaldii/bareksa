@@ -15,6 +15,8 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
+import Header from 'components/Header'
+
 import makeSelectHome from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -38,6 +40,7 @@ export class Home extends React.Component {
           <title>Home</title>
           <meta name="description" content="Description of Home" />
         </Helmet>
+        <Header />
         <FormattedMessage {...messages.header} />
         <PieChart {...this.props} />
         <div style={{ fontSize: '24px', fontWeight: '700' }}>

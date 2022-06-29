@@ -10,10 +10,12 @@ injectGlobal`
 
   body {
     font-family: 'Montserrat', sans-serif;
+    color: #333333;
   }
 
   body.fontLoaded {
     font-family: 'Montserrat', sans-serif;
+    color: #333333;
   }
 
   #app {
@@ -25,6 +27,7 @@ injectGlobal`
   p,
   label {
     font-family: 'Montserrat', sans-serif;
+    color: #333333;
     line-height: 1.5em;
   }
 `;
