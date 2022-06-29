@@ -26,6 +26,7 @@ import { resetState, fetchOrders } from './actions';
 
 import OrderTable from './components/OrderTable';
 import PieChart from './components/PieChart';
+import LineChart from './components/LineChart';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.Component {
@@ -43,6 +44,7 @@ export class Home extends React.Component {
         <Header />
         <FormattedMessage {...messages.header} />
         <PieChart {...this.props} />
+        <LineChart {...this.props} />
         <div style={{ fontSize: '24px', fontWeight: '700' }}>
           {"Orders"}
         </div>

@@ -25,12 +25,20 @@ function PieChart(props) {
     ],
   };
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'bottom',
+      },
+    },
+  };
 
   return (
     <div>
       <p>Pie Chart</p>
       <div style={{ width: '256px' }}>
-        <Pie data={data} />
+        <Pie options={options} data={data} />
       </div>
     </div>
   )
