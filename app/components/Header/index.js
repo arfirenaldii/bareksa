@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 
 import Img from 'components/Img';
 
@@ -25,10 +26,14 @@ class Header extends React.Component {
         <Wrapper>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Img src={Logo} alt="logo" />
-            <HeaderName />
+            <MediaQuery query="(min-width: 992px)">
+              <HeaderName />
+            </MediaQuery>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <HeaderSearch />
+            <MediaQuery query="(min-width: 992px)">
+              <HeaderSearch />
+            </MediaQuery>
             <Notification />
             <Settings />
           </div>
