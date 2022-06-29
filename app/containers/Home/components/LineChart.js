@@ -24,6 +24,33 @@ ChartJS.register(
   Legend
 );
 
+function getRevenue(orders) {
+  let revenue = []
+  let keyRevenue = []
+  let valueRevenue = []
+
+  for (let i = 0; i < orders.length; i++) {
+    let keyDate = format(new Date(orders[i].start_date), 'yyyy-MM-dd')
+    if (keyRevenue.includes(keyDate)) {
+      let index = keyRevenue.indexOf(keyDate)
+      valueRevenue[index] += parseInt(orders[i].conversion_revenue)
+    } else {
+      keyRevenue.push(keyDate)
+      valueRevenue.push(parseInt(orders[i].conversion_revenue))
+    }
+
+    revenue.push({
+      key: format(new Date(orders[i].start_date), 'yyyy-MM-dd'),
+      value: orders[i].conversion_revenue
+    })
+  }
+
+  return {
+    key: keyRevenue,
+    value: valueRevenue
+  }
+}
+
 function createGradient(ctx) {
   const gradient = ctx.createLinearGradient(0, 0, 0, 300);
 
@@ -47,12 +74,12 @@ function LineChart(props) {
     }
 
     const chartData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: [],
       datasets: [
         {
           fill: true,
           label: 'Revenue',
-          data: [68, 937, 655, 745, 130, 335, 375],
+          data: [],
           borderColor: '#789764',
           backgroundColor: createGradient(chart.ctx),
         },
@@ -87,6 +114,15 @@ function LineChart(props) {
     },
   };
 
+  const data = {
+    ...chartData,
+    labels: getRevenue(props.home.orders).key,
+    datasets: chartData.datasets.map(dataset => ({
+      ...dataset,
+      data: getRevenue(props.home.orders).value,
+    })),
+  }
+
   return (
     <div>
       <p>Line Chart</p>
@@ -94,7 +130,7 @@ function LineChart(props) {
         <Line
           ref={chartRef}
           options={options}
-          data={chartData}
+          data={data}
         />
       </div>
     </div>
