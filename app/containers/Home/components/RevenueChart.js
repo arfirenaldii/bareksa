@@ -2,6 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { format } from 'date-fns';
 
 import LineChart from 'components/Chart/LineChart';
+import H5 from 'components/H5';
+import PSmall from 'components/PSmall';
+import Img from 'components/Img';
+
+import ArrowGreen from '../images/arrow-up-green.svg'
 
 function getRevenue(orders) {
   let keyRevenue = []
@@ -31,6 +36,26 @@ function createGradient(ctx) {
   gradient.addColorStop(1, "#fff");
 
   return gradient;
+}
+
+function getTotalRevenue(revenue) {
+  if (revenue.length === 0) {
+    return
+  }
+  return revenue.reduce((sum, cur) => sum + cur)
+}
+
+function TotalRevenue(props) {
+  return (
+    <div style={{ marginTop: '32px' }}>
+      <PSmall style={{ fontWeight: '600' }}>Total Revenue</PSmall>
+      <H5>{`$${getTotalRevenue(getRevenue(props.home.orders).value)}`}</H5>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
+        <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>100%</PSmall>
+      </div>
+    </div>
+  )
 }
 
 function RevenueChart(props) {
@@ -113,12 +138,15 @@ function RevenueChart(props) {
   }
 
   return (
-    <div style={{ height: '200px' }}>
-      <LineChart
-        chartRef={chartRef}
-        options={options}
-        data={data}
-      />
+    <div>
+      <div style={{ height: '200px' }}>
+        <LineChart
+          chartRef={chartRef}
+          options={options}
+          data={data}
+        />
+      </div>
+      <TotalRevenue {...props} />
     </div>
   )
 }
