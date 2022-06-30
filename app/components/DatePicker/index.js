@@ -1,10 +1,11 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
+import PropTypes from 'prop-types';
 import "react-datepicker/dist/react-datepicker.css";
 
 import './style.css'
 
-function Calendar(props) {
+function CustomDatePicker(props) {
   return (
     <DatePicker
       selected={props.startDate}
@@ -23,4 +24,12 @@ function Calendar(props) {
   );
 }
 
-export default Calendar;
+CustomDatePicker.propTypes = {
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
+  onChange: PropTypes.func,
+};
+
+export default CustomDatePicker;

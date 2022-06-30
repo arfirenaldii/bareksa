@@ -1,31 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DatePicker from "react-datepicker";
-import { addDays } from 'date-fns';
+import PropTypes from 'prop-types';
 import "react-datepicker/dist/react-datepicker.css";
 
 import './style.css'
 
-function Calendar() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(addDays(new Date(), 10));
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-
+function Calendar(props) {
   return (
     <DatePicker
       className="datepicker"
-      selected={startDate}
-      onChange={onChange}
-      startDate={startDate}
-      endDate={endDate}
+      selected={props.startDate}
+      onChange={props.onChange}
+      startDate={props.startDate}
+      endDate={props.endDate}
       dateFormatCalendar="MMMM"
       formatWeekDay={nameOfDay => nameOfDay.substring(0, 1)}
       selectsRange
-      minDate={new Date()}
-      maxDate={addDays(new Date(), 30)}
+      minDate={props.minDate}
+      maxDate={props.maxDate}
       showDisabledMonthNavigation
       disabledKeyboardNavigation
       inline
@@ -37,5 +29,13 @@ function Calendar() {
     </DatePicker>
   );
 }
+
+Calendar.propTypes = {
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
+  onChange: PropTypes.func,
+};
 
 export default Calendar;

@@ -26,7 +26,7 @@ import { resetState, fetchOrders } from './actions';
 import Conversion from './components/Conversion';
 import Users from './components/Users';
 import Revenue from './components/Revenue';
-import OrderTable from './components/OrderTable';
+import Orders from './components/Orders';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.Component {
@@ -53,12 +53,7 @@ export class Home extends React.Component {
                 <Revenue {...this.props} />
               </Column>
             </div>
-            <Column width={25}>
-              <Calendar />
-            </Column>
-            <Column width={75}>
-              <OrderTable {...this.props} />
-            </Column>
+            <Orders {...this.props} />
           </div>
         }
       </div>
