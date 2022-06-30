@@ -10,7 +10,8 @@ import ChartWrapper from './ChartWrapper'
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-bottom: 32px;
 `
 
 function Conversion(props) {

@@ -25,7 +25,7 @@ function getRevenue(orders) {
 }
 
 function createGradient(ctx) {
-  const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+  const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
   gradient.addColorStop(0, "#789764");
   gradient.addColorStop(1, "#fff");
@@ -49,12 +49,39 @@ function RevenueChart(props) {
 
   const options = {
     responsive: true,
-    // maintainAspectRatio: false,
+    maintainAspectRatio: false,
     scales: {
       y: {
         grid: {
           display: false
-        }
+        },
+        ticks: {
+          callback: function (value) {
+            return `$${value / 1000}k`
+          },
+          autoSkip: true,
+          maxTicksLimit: 5,
+          font: {
+            family: "'Montserrat', sans-serif"
+          }
+        },
+      },
+      x: {
+        grid: {
+          drawTicks: false,
+        },
+        ticks: {
+          callback: function (val) {
+            return format(new Date(this.getLabelForValue(val)), 'd MMM')
+          },
+          autoSkip: true,
+          maxTicksLimit: 6,
+          font: {
+            family: "'Montserrat', sans-serif"
+          },
+          maxRotation: 0,
+          minRotation: 0,
+        },
       }
     },
     elements: {
@@ -86,11 +113,13 @@ function RevenueChart(props) {
   }
 
   return (
-    <LineChart
-      chartRef={chartRef}
-      options={options}
-      data={data}
-    />
+    <div style={{ height: '200px' }}>
+      <LineChart
+        chartRef={chartRef}
+        options={options}
+        data={data}
+      />
+    </div>
   )
 }
 
