@@ -24,9 +24,10 @@ import messages from './messages';
 
 import { resetState, fetchOrders } from './actions';
 
+import ConversionChart from './components/ConversionChart';
+import UsersChart from './components/UsersChart';
+import RevenueChart from './components/RevenueChart';
 import OrderTable from './components/OrderTable';
-import PieChart from './components/PieChart';
-import LineChart from './components/LineChart';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.Component {
@@ -43,8 +44,9 @@ export class Home extends React.Component {
         </Helmet>
         <Header />
         <FormattedMessage {...messages.header} />
-        <PieChart {...this.props} />
-        <LineChart {...this.props} />
+        <ConversionChart {...this.props} />
+        <UsersChart {...this.props} />
+        <RevenueChart {...this.props} />
         <div style={{ fontSize: '24px', fontWeight: '700' }}>
           {"Orders"}
         </div>

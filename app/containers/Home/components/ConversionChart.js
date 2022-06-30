@@ -1,11 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+import PieChart from 'components/Chart/PieChart';
 
-function PieChart(props) {
+function ConversionChart(props) {
   const userKeys = Object.keys(props.home.userCategory);
   const userValues = Object.values(props.home.userCategory);
 
@@ -35,13 +32,10 @@ function PieChart(props) {
   };
 
   return (
-    <div>
-      <p>Pie Chart</p>
-      <div style={{ width: '256px' }}>
-        <Pie options={options} data={data} />
-      </div>
+    <div style={{ width: '256px' }}>
+      <PieChart options={options} data={data} />
     </div>
   )
 }
 
-export default PieChart
+export default ConversionChart
