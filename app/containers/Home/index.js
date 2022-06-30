@@ -38,23 +38,29 @@ export class Home extends React.Component {
     return (
       <div>
         <Header />
-        <div style={{ margin: '12px 0px' }}>
-          <Column width={25}>
-            <Conversion {...this.props} />
-          </Column>
-          <Column width={25}>
-            <Users {...this.props} />
-          </Column>
-          <Column width={50}>
-            <Revenue {...this.props} />
-          </Column>
-        </div>
-        <Column width={25}>
-          <Calendar />
-        </Column>
-        <Column width={75}>
-          <OrderTable {...this.props} />
-        </Column>
+        {this.props.home.loadingFetchOrders ?
+          <div>loading...</div>
+          :
+          <div>
+            <div style={{ margin: '12px 0px' }}>
+              <Column width={25}>
+                <Conversion {...this.props} />
+              </Column>
+              <Column width={25}>
+                <Users {...this.props} />
+              </Column>
+              <Column width={50}>
+                <Revenue {...this.props} />
+              </Column>
+            </div>
+            <Column width={25}>
+              <Calendar />
+            </Column>
+            <Column width={75}>
+              <OrderTable {...this.props} />
+            </Column>
+          </div>
+        }
       </div>
     );
   }

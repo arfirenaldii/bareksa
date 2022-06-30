@@ -46,6 +46,14 @@ function UsersChart(props) {
     plugins: {
       legend: {
         position: 'bottom',
+        labels: {
+          usePointStyle: true,
+          boxWidth: 8,
+          font: {
+            family: "'Montserrat', sans-serif",
+            size: 12
+          }
+        }
       },
     },
   };
