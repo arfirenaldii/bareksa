@@ -6,6 +6,7 @@ export const TableHead = styled.th`
     font-size: 14px;
     color: #333333;
     background-color: #F5F5F5;
+    padding: 8px 12px
 `;
 
 export default TableHead;
