@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Img from 'components/Img';
+import Img from 'components/Img'
+import PSmall from 'components/PSmall'
 
 import Shape from './images/shape.svg'
 
@@ -30,13 +31,6 @@ const Name = styled.div`
   line-height: 24px;
 `
 
-const Location = styled.div`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: #9C9C9C;
-`
-
 const StyledImg = styled(Img)`
   padding: 10px;
   cursor: pointer;
@@ -48,7 +42,7 @@ function HeaderName() {
       <Icon>RH</Icon>
       <div style={{ width: '146px' }}>
         <Name>Reinhart H.</Name>
-        <Location>Kemang, Jakarta</Location>
+        <PSmall>Kemang, Jakarta</PSmall>
       </div>
       <StyledImg src={Shape} alt="Shape" />
     </Wrapper>
