@@ -16,6 +16,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
 import Header from 'components/Header'
+import Calendar from 'components/Calendar'
 
 import makeSelectHome from './selectors';
 import reducer from './reducer';
@@ -50,6 +51,7 @@ export class Home extends React.Component {
         <div style={{ fontSize: '24px', fontWeight: '700' }}>
           {"Orders"}
         </div>
+        <Calendar />
         <OrderTable {...this.props} />
       </div>
     );
