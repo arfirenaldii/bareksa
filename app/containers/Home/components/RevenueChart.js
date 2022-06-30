@@ -49,7 +49,8 @@ function TotalRevenue(props) {
   return (
     <div style={{ marginTop: '32px' }}>
       <PSmall style={{ fontWeight: '600' }}>Total Revenue</PSmall>
-      <H5>{`$${getTotalRevenue(getRevenue(props.home.orders).value)}`}</H5>
+      {/* <H5>{`$${getTotalRevenue(getRevenue(props.home.orders).value)}`}</H5> */}
+      <H5>{`$${getTotalRevenue(props.data)}`}</H5>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
         <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>100%</PSmall>
@@ -125,12 +126,16 @@ function RevenueChart(props) {
   };
 
   const data = {
-    labels: getRevenue(props.home.orders).key,
+    // labels: getRevenue(props.home.orders).key,
+    // labels: getRevenue(props.orders).key,
+    labels: props.labels,
     datasets: [
       {
         fill: true,
         label: 'Revenue',
-        data: getRevenue(props.home.orders).value,
+        // data: getRevenue(props.home.orders).value,
+        // data: getRevenue(props.orders).value,
+        data: props.data,
         borderColor: '#789764',
         backgroundColor: gradient,
       },
