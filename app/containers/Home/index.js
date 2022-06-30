@@ -7,8 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -17,17 +15,17 @@ import injectReducer from 'utils/injectReducer';
 
 import Header from 'components/Header'
 import Calendar from 'components/Calendar'
+import Column from 'components/Column'
 
 import makeSelectHome from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 import { resetState, fetchOrders } from './actions';
 
-import ConversionChart from './components/ConversionChart';
-import UsersChart from './components/UsersChart';
-import RevenueChart from './components/RevenueChart';
+import Conversion from './components/Conversion';
+import Users from './components/Users';
+import Revenue from './components/Revenue';
 import OrderTable from './components/OrderTable';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -39,20 +37,24 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
-        <Helmet>
-          <title>Home</title>
-          <meta name="description" content="Description of Home" />
-        </Helmet>
         <Header />
-        <FormattedMessage {...messages.header} />
-        <ConversionChart {...this.props} />
-        <UsersChart {...this.props} />
-        <RevenueChart {...this.props} />
-        <div style={{ fontSize: '24px', fontWeight: '700' }}>
-          {"Orders"}
+        <div style={{ margin: '24px 0px' }}>
+          <Column width={25}>
+            <Conversion {...this.props} />
+          </Column>
+          <Column width={25}>
+            <Users {...this.props} />
+          </Column>
+          <Column width={50}>
+            <Revenue {...this.props} />
+          </Column>
         </div>
-        <Calendar />
-        <OrderTable {...this.props} />
+        <Column width={25}>
+          <Calendar />
+        </Column>
+        <Column width={75}>
+          <OrderTable {...this.props} />
+        </Column>
       </div>
     );
   }

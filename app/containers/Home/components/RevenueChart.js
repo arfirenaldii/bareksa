@@ -86,13 +86,11 @@ function RevenueChart(props) {
   }
 
   return (
-    <div style={{ width: '575px' }}>
-      <LineChart
-        chartRef={chartRef}
-        options={options}
-        data={data}
-      />
-    </div>
+    <LineChart
+      chartRef={chartRef}
+      options={options}
+      data={data}
+    />
   )
 }
 

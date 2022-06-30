@@ -24,17 +24,17 @@ function ConversionChart(props) {
 
   const options = {
     responsive: true,
+    // maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
+        display: false,
       },
     },
   };
 
   return (
-    <div style={{ width: '256px' }}>
-      <PieChart options={options} data={data} />
-    </div>
+    <PieChart options={options} data={data} />
   )
 }
 
