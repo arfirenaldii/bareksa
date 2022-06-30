@@ -3,36 +3,6 @@ import { format } from 'date-fns';
 
 import LineChart from 'components/Chart/LineChart';
 
-function getExampleRevenue(props) {
-  let data = props.home.orders
-  let temp = {}
-  if (data.length) {
-    for (let i = 0; i < data.length; i++) {
-      let date = new Date(data[i].start_date)
-      let key = `${date.getUTCDate()}-${date.getUTCMonth()}-${date.getUTCFullYear()}`
-      if (temp[key]) {
-        temp[key].value += Number(data[i].conversion_revenue)
-      } else {
-        temp[key] = {
-          date,
-          value: Number(data[i].conversion_revenue)
-        }
-      }
-    }
-  }
-  let res = []
-  let total = 0
-  Object.keys(temp).forEach((el) => {
-    total += temp[el].value
-    res.push([
-      temp[el].date.getTime(),
-      temp[el].value,
-    ])
-  })
-
-  console.log(temp)
-}
-
 function getRevenue(orders) {
   let keyRevenue = []
   let valueRevenue = []
