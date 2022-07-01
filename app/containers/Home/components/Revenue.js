@@ -63,7 +63,6 @@ function getFilteredRevenue(revenue, date) {
 }
 
 function Revenue(props) {
-  const [orders, setOrders] = useState([])
   const [revenue, setRevenue] = useState([])
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -79,7 +78,6 @@ function Revenue(props) {
   };
 
   useEffect(() => {
-    setOrders(props.home.orders)
     setRevenue(getRevenue(props.home.orders))
   }, []);
 
@@ -131,7 +129,6 @@ function Revenue(props) {
       <RevenueChart
         labels={labels}
         data={data}
-        orders={orders}
         {...props}
       />
     </ChartWrapper>
