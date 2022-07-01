@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { getTime } from 'date-fns';
 
 import Calendar from 'components/Calendar'
 import Column from 'components/Column'
@@ -24,6 +25,24 @@ const CalendarWrapper = styled.div`
   // }
 `
 
+function getFilteredOrders(orders, date) {
+  if (orders.length === 0) {
+    return
+  }
+
+  let filteredOrders = []
+  orders.forEach((order) => {
+    if (
+      (getTime(new Date(order.start_date)) >= getTime(date.startDate) && getTime(new Date(order.start_date)) <= getTime(date.endDate)) ||
+      (getTime(new Date(order.due_date)) >= getTime(date.startDate) && getTime(new Date(order.due_date)) <= getTime(date.endDate))
+    ) {
+      filteredOrders.push(order)
+    }
+  });
+
+  return filteredOrders
+}
+
 function FilterButton(props) {
   return (
     <div style={{ textAlign: 'center' }}>
@@ -31,13 +50,13 @@ function FilterButton(props) {
         <Button
           color="white"
           line={true}
-          handleRoute={() => console.log('cancel')}
+          handleRoute={props.onClickCancel}
         >
           Cancel
         </Button>
         <Button
           color="green"
-          handleRoute={() => console.log('filter')}
+          handleRoute={props.onClickFilter}
         >
           Filter
         </Button>
@@ -53,25 +72,32 @@ function Orders(props) {
   const [minDate, setMinDate] = useState(new Date());
   const [maxDate, setMaxDate] = useState(new Date());
 
-  const onChange = (dates) => {
+  function onChange(dates) {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
 
-  useEffect(() => {
-    setOrders(props.home.orders)
-  }, []);
+  function onClickCancel(orders, date) {
+    setStartDate(date.minDate)
+    setEndDate(date.maxDate)
+    setOrders(orders)
+  };
+
+  function onClickFilter(orders, date) {
+    setOrders(getFilteredOrders(orders, date))
+  };
 
   useEffect(() => {
-    if (orders.length > 0) {
-      let lastIndex = orders.length - 1
-      setStartDate(new Date(orders[0].start_date))
-      setEndDate(new Date(orders[lastIndex].start_date))
-      setMinDate(new Date(orders[0].start_date))
-      setMaxDate(new Date(orders[lastIndex].start_date))
+    setOrders(props.home.orders)
+    if (props.home.orders.length !== 0) {
+      let lastIndex = props.home.orders.length - 1
+      setMinDate(new Date(props.home.orders[0].start_date))
+      setMaxDate(new Date(props.home.orders[lastIndex].start_date))
+      setStartDate(new Date(props.home.orders[0].start_date))
+      setEndDate(new Date(props.home.orders[lastIndex].start_date))
     }
-  }, [orders]);
+  }, []);
 
   return (
     <div>
@@ -82,15 +108,22 @@ function Orders(props) {
             endDate={endDate}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={onChange}
+            onChange={(date) => onChange(date)}
             {...props}
           >
-            <FilterButton {...props} />
+            <FilterButton
+              onClickCancel={() => onClickCancel(props.home.orders, { minDate, maxDate })}
+              onClickFilter={() => onClickFilter(props.home.orders, { startDate, endDate })}
+              {...props}
+            />
           </Calendar>
         </CalendarWrapper>
       </Column>
       <Column width={75}>
-        <OrderTable {...props} />
+        <OrderTable
+          orders={orders}
+          {...props}
+        />
       </Column>
     </div>
   )

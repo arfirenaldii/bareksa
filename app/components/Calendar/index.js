@@ -13,7 +13,6 @@ function Calendar(props) {
       onChange={props.onChange}
       startDate={props.startDate}
       endDate={props.endDate}
-      dateFormatCalendar="MMMM"
       formatWeekDay={nameOfDay => nameOfDay.substring(0, 1)}
       selectsRange
       minDate={props.minDate}

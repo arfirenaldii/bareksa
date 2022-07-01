@@ -14,7 +14,6 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
 import Header from 'components/Header'
-import Calendar from 'components/Calendar'
 import Column from 'components/Column'
 
 import makeSelectHome from './selectors';

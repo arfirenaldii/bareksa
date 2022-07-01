@@ -63,7 +63,7 @@ function OrderTable(props) {
             </TableRowHead>
           </thead>
           <tbody>
-            {props.home.orders.map((order) =>
+            {props.orders.map((order) =>
               <TableRowBody key={order.order_id}>
                 <TableData>{getOrderId(order.order_id)}</TableData>
                 <TableData>
