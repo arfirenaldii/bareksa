@@ -7,7 +7,7 @@ import { push } from 'react-router-redux';
 import Header from '../index';
 
 describe('<Header />', () => {
-  it('should render a prop', () => {
+  it('should render header', () => {
     window.testMediaQueryValues = { width: 993 }
 
     render(
