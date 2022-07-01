@@ -41,7 +41,7 @@ export class Home extends React.Component {
           <div>loading...</div>
           :
           <div>
-            <div style={{ margin: '12px 0px' }}>
+            <div style={{ margin: '12px' }}>
               <Column width={25}>
                 <Conversion {...this.props} />
               </Column>

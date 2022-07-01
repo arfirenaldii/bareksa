@@ -2,6 +2,7 @@
   font-family: "Montserrat", sans-serif;
   color: #333333;
   width: 100%;
+  border: solid 1px #E5E5E5;
 }
 
 .react-datepicker__current-month,
