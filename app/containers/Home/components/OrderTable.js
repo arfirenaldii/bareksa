@@ -9,6 +9,10 @@ import TableRowBody from 'components/Table/TableRowBody'
 import TableData from 'components/Table/TableData'
 import Label from 'components/Label'
 
+const Wrapper = styled.div`
+  margin: 0px 16px;
+`
+
 const TableWrapper = styled.div`
   height: 336px;
   width: 100%;
@@ -44,7 +48,7 @@ function OrderTable(props) {
   }
 
   return (
-    <div>
+    <Wrapper>
       <H5 style={{ margin: '24px 0px' }}>Orders</H5>
       <TableWrapper>
         <table style={{ width: '100%' }}>
@@ -74,7 +78,7 @@ function OrderTable(props) {
           </tbody>
         </table>
       </TableWrapper>
-    </div>
+    </Wrapper>
   )
 }
 

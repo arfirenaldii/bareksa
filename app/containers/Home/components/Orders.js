@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import Calendar from 'components/Calendar'
 import Column from 'components/Column'
@@ -6,22 +7,41 @@ import Button from 'components/Button'
 
 import OrderTable from '../components/OrderTable'
 
+const Wrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  margin: 32px 0px;
+`
+
+const CalendarWrapper = styled.div`
+  margin: 16px;
+
+  // @media (max-width: 992px) {
+  //   display: flex;
+  //   justify-content: center;
+  // }
+`
+
 function FilterButton(props) {
   return (
     <div style={{ textAlign: 'center' }}>
-      <Button
-        color="white"
-        line={true}
-        handleRoute={() => console.log('cancel')}
-      >
-        Cancel
-      </Button>
-      <Button
-        color="green"
-        handleRoute={() => console.log('filter')}
-      >
-        Filter
-      </Button>
+      <Wrapper>
+        <Button
+          color="white"
+          line={true}
+          handleRoute={() => console.log('cancel')}
+        >
+          Cancel
+        </Button>
+        <Button
+          color="green"
+          handleRoute={() => console.log('filter')}
+        >
+          Filter
+        </Button>
+      </Wrapper>
     </div>
   )
 }
@@ -56,16 +76,18 @@ function Orders(props) {
   return (
     <div>
       <Column width={25}>
-        <Calendar
-          startDate={startDate}
-          endDate={endDate}
-          minDate={minDate}
-          maxDate={maxDate}
-          onChange={onChange}
-          {...props}
-        >
-          <FilterButton {...props} />
-        </Calendar>
+        <CalendarWrapper>
+          <Calendar
+            startDate={startDate}
+            endDate={endDate}
+            minDate={minDate}
+            maxDate={maxDate}
+            onChange={onChange}
+            {...props}
+          >
+            <FilterButton {...props} />
+          </Calendar>
+        </CalendarWrapper>
       </Column>
       <Column width={75}>
         <OrderTable {...props} />

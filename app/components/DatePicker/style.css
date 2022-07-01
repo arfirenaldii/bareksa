@@ -4,8 +4,11 @@
   border: 1px solid #E5E5E5;
   padding: 8px 16px;
   border-radius: 4px;
-  position: absolute;
-  right: 0;
+
+  @media (min-width: 992px) {
+    position: absolute;
+    right: 0;
+  }
 }
 
 .react-datepicker__input-container input {
@@ -125,4 +128,17 @@
 .react-datepicker__day--range-start, .react-datepicker__day--range-end {
   background-color: #8772B0;
   color: #FFFFFF;
+}
+
+.react-datepicker__day-names, .react-datepicker__week {
+  display: flex;
+  justify-content: space-around;
+}
+
+.react-datepicker__day {
+  margin: 5px;
+}
+
+.react-datepicker__current-month, .react-datepicker__navigation {
+  margin: 20px 0px;
 }

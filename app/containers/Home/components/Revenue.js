@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { format } from 'date-fns';
+import MediaQuery from 'react-responsive';
 
 import H5 from 'components/H5'
 import DatePicker from 'components/DatePicker'
@@ -12,8 +13,12 @@ const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
   position: relative;
+  margin-bottom: 32px;
+
+  @media (max-width: 992px) {
+    margin: 0px;
+  }
 `
 
 function getRevenue(orders) {
@@ -91,15 +96,29 @@ function Revenue(props) {
     <ChartWrapper>
       <TitleWrapper>
         <H5>Revenue</H5>
-        <DatePicker
-          startDate={startDate}
-          endDate={endDate}
-          minDate={minDate}
-          maxDate={maxDate}
-          onChange={onChange}
-          {...props}
-        />
+        <MediaQuery query="(min-width: 992px)">
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            minDate={minDate}
+            maxDate={maxDate}
+            onChange={onChange}
+            {...props}
+          />
+        </MediaQuery>
       </TitleWrapper>
+      <MediaQuery query="(max-width: 992px)">
+        <div style={{ marginBottom: '16px' }}>
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            minDate={minDate}
+            maxDate={maxDate}
+            onChange={onChange}
+            {...props}
+          />
+        </div>
+      </MediaQuery>
       <RevenueChart
         labels={labels}
         data={data}
