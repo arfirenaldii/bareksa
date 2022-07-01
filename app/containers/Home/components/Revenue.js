@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { format } from 'date-fns';
+import { format, getTime } from 'date-fns';
 import MediaQuery from 'react-responsive';
 
 import H5 from 'components/H5'
@@ -42,6 +42,26 @@ function getRevenue(orders) {
   }
 }
 
+function getFilteredRevenue(revenue, date) {
+  if (revenue.length === 0) {
+    return
+  }
+
+  let filteredKey = []
+  let filteredRevenue = []
+  revenue.key.forEach((key, index) => {
+    if (getTime(new Date(key)) >= getTime(new Date(date.startDate)) && getTime(new Date(key)) <= getTime(new Date(date.endDate))) {
+      filteredKey.push(key)
+      filteredRevenue.push(revenue.value[index])
+    }
+  })
+
+  return {
+    key: filteredKey,
+    value: filteredRevenue
+  }
+}
+
 function Revenue(props) {
   const [orders, setOrders] = useState([])
   const [revenue, setRevenue] = useState([])
@@ -60,23 +80,11 @@ function Revenue(props) {
 
   useEffect(() => {
     setOrders(props.home.orders)
-    // let index = getRevenue(props.home.orders).key.length - 1
-    // setStartDate(new Date(getRevenue(props.home.orders).key[0]))
-    // setEndDate(new Date(getRevenue(props.home.orders).key[index]))
-    // setMinDate(new Date(getRevenue(props.home.orders).key[0]))
-    // setMaxDate(new Date(getRevenue(props.home.orders).key[index]))
-
-    // setLabels(getRevenue(props.home.orders).key)
-    // setData(getRevenue(props.home.orders).value)
-
     setRevenue(getRevenue(props.home.orders))
   }, []);
 
   useEffect(() => {
     if (revenue.length !== 0) {
-      setLabels(revenue.key)
-      setData(revenue.value)
-
       let index = revenue.key.length - 1
       setStartDate(new Date(revenue.key[0]))
       setEndDate(new Date(revenue.key[index]))
@@ -86,9 +94,10 @@ function Revenue(props) {
   }, [revenue]);
 
   useEffect(() => {
-    if (endDate !== null) {
-      // setLabels(['2020-01-03', '2020-01-05', '2020-01-06'])
-      // setData([1185, 672, 2695])
+    if (endDate !== null && revenue.length !== 0) {
+      let filteredRevenue = getFilteredRevenue(revenue, { startDate, endDate })
+      setLabels(filteredRevenue.key)
+      setData(filteredRevenue.value)
     }
   }, [endDate]);
 

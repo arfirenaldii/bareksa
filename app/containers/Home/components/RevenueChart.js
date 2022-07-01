@@ -8,27 +8,6 @@ import Img from 'components/Img';
 
 import ArrowGreen from '../images/arrow-up-green.svg'
 
-function getRevenue(orders) {
-  let keyRevenue = []
-  let valueRevenue = []
-
-  for (let i = 0; i < orders.length; i++) {
-    let keyDate = format(new Date(orders[i].start_date), 'yyyy-MM-dd')
-    if (keyRevenue.includes(keyDate)) {
-      let index = keyRevenue.indexOf(keyDate)
-      valueRevenue[index] += parseInt(orders[i].conversion_revenue)
-    } else {
-      keyRevenue.push(keyDate)
-      valueRevenue.push(parseInt(orders[i].conversion_revenue))
-    }
-  }
-
-  return {
-    key: keyRevenue,
-    value: valueRevenue
-  }
-}
-
 function createGradient(ctx) {
   const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
@@ -49,7 +28,6 @@ function TotalRevenue(props) {
   return (
     <div style={{ marginTop: '32px' }}>
       <PSmall style={{ fontWeight: '600' }}>Total Revenue</PSmall>
-      {/* <H5>{`$${getTotalRevenue(getRevenue(props.home.orders).value)}`}</H5> */}
       <H5>{`$${getTotalRevenue(props.data)}`}</H5>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
@@ -126,15 +104,11 @@ function RevenueChart(props) {
   };
 
   const data = {
-    // labels: getRevenue(props.home.orders).key,
-    // labels: getRevenue(props.orders).key,
     labels: props.labels,
     datasets: [
       {
         fill: true,
         label: 'Revenue',
-        // data: getRevenue(props.home.orders).value,
-        // data: getRevenue(props.orders).value,
         data: props.data,
         borderColor: '#789764',
         backgroundColor: gradient,
