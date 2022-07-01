@@ -13,10 +13,34 @@ import A from './A';
 import StyledButton from './StyledButton';
 import Wrapper from './Wrapper';
 
+const green = {
+  color: '#333333',
+  backgroundColor: '#82C341',
+  backgroundColor: '#82C341',
+  hover: ''
+}
+
+const white = {
+  color: '#333333',
+  backgroundColor: '#FFFFFF',
+  border: '#E5E5E5',
+  hover: ''
+}
+
+function getColor(color) {
+  switch (color) {
+    case 'green':
+      return green
+
+    default:
+      return white
+  }
+}
+
 function Button(props) {
   // Render an anchor tag
   let button = (
-    <A href={props.href} onClick={props.onClick}>
+    <A href={props.href} onClick={props.onClick} color={getColor(props.color)} line={props.line}>
       {Children.toArray(props.children)}
     </A>
   );
@@ -24,7 +48,7 @@ function Button(props) {
   // If the Button has a handleRoute prop, we want to render a button
   if (props.handleRoute) {
     button = (
-      <StyledButton onClick={props.handleRoute}>
+      <StyledButton onClick={props.handleRoute} color={getColor(props.color)} line={props.line}>
         {Children.toArray(props.children)}
       </StyledButton>
     );

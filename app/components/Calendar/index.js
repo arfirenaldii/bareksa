@@ -22,10 +22,7 @@ function Calendar(props) {
       disabledKeyboardNavigation
       inline
     >
-      <div style={{ textAlign: 'center' }}>
-        <button type="button" onClick={() => console.log('cancel')}>Cancel</button>
-        <button type="button" onClick={() => console.log('filter')}>Filter</button>
-      </div>
+      {props.children}
     </DatePicker>
   );
 }
@@ -36,6 +33,7 @@ Calendar.propTypes = {
   minDate: PropTypes.object,
   maxDate: PropTypes.object,
   onChange: PropTypes.func,
+  children: PropTypes.object,
 };
 
 export default Calendar;
