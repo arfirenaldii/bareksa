@@ -24,15 +24,38 @@ function getTotalRevenue(revenue) {
   return revenue.reduce((sum, cur) => sum + cur)
 }
 
+function getPercentage(revenue) {
+  if (revenue.length === 0) {
+    return ''
+  }
+  let lastIndex = revenue.length - 1
+  let percentage = ((revenue[lastIndex] - revenue[0]) / revenue[0]) * 100
+  return percentage.toFixed(2)
+}
+
+function Percentage(props) {
+  if (Number(getPercentage(props.data)) < 0) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <PSmall style={{ fontWeight: '500', color: 'red' }}>{`${getPercentage(props.data).replace(".", ",")}%`}</PSmall>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
+      <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>{`${getPercentage(props.data).replace(".", ",")}%`}</PSmall>
+    </div>
+  )
+}
+
 function TotalRevenue(props) {
   return (
     <div style={{ marginTop: '32px' }}>
       <PSmall style={{ fontWeight: '600' }}>Total Revenue</PSmall>
       <H5>{`$${getTotalRevenue(props.data)}`}</H5>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
-        <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>100%</PSmall>
-      </div>
+      <Percentage {...props} />
     </div>
   )
 }

@@ -18,11 +18,6 @@ const Wrapper = styled.div`
 
 const CalendarWrapper = styled.div`
   margin: 16px;
-
-  // @media (max-width: 992px) {
-  //   display: flex;
-  //   justify-content: center;
-  // }
 `
 
 function getFilteredOrders(orders, date) {
