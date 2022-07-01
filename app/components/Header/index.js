@@ -25,13 +25,13 @@ class Header extends React.Component {
       <div>
         <Wrapper>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Img src={Logo} alt="logo" />
-            <MediaQuery query="(min-width: 992px)">
+            <Img src={Logo} alt="Logo" />
+            <MediaQuery query="(min-width: 992px)" values={window.testMediaQueryValues}>
               <HeaderName />
             </MediaQuery>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <MediaQuery query="(min-width: 992px)">
+            <MediaQuery query="(min-width: 992px)" values={window.testMediaQueryValues}>
               <HeaderSearch />
             </MediaQuery>
             <Notification />
