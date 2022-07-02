@@ -7,6 +7,7 @@ import Column from 'components/Column'
 import Button from 'components/Button'
 
 import OrderTable from '../components/OrderTable'
+import OrderCalendar from '../components/OrderCalendar'
 
 const Wrapper = styled.div`
   display: inline-flex;
@@ -97,7 +98,17 @@ function Orders(props) {
   return (
     <div>
       <Column width={25}>
-        <CalendarWrapper>
+        <OrderCalendar
+          startDate={startDate}
+          endDate={endDate}
+          minDate={minDate}
+          maxDate={maxDate}
+          onChange={(date) => onChange(date)}
+          onClickCancel={() => onClickCancel(props.home.orders, { minDate, maxDate })}
+          onClickFilter={() => onClickFilter(props.home.orders, { startDate, endDate })}
+          {...props}
+        />
+        {/* <CalendarWrapper>
           <Calendar
             startDate={startDate}
             endDate={endDate}
@@ -112,7 +123,7 @@ function Orders(props) {
               {...props}
             />
           </Calendar>
-        </CalendarWrapper>
+        </CalendarWrapper> */}
       </Column>
       <Column width={75}>
         <OrderTable
