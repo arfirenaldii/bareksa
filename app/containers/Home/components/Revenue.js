@@ -103,7 +103,7 @@ function Revenue(props) {
     <ChartWrapper>
       <TitleWrapper>
         <H5>Revenue</H5>
-        <MediaQuery query="(min-width: 992px)">
+        <MediaQuery query="(min-width: 992px)" values={window.testMediaQueryValues}>
           <DatePicker
             startDate={startDate}
             endDate={endDate}
@@ -114,7 +114,7 @@ function Revenue(props) {
           />
         </MediaQuery>
       </TitleWrapper>
-      <MediaQuery query="(max-width: 992px)">
+      <MediaQuery query="(max-width: 992px)" values={window.testMediaQueryValues}>
         <div style={{ marginBottom: '16px' }}>
           <DatePicker
             startDate={startDate}

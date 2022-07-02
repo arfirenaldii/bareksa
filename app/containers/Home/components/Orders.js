@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { getTime } from 'date-fns';
 
-import Calendar from 'components/Calendar'
 import Column from 'components/Column'
-import Button from 'components/Button'
 
 import OrderTable from '../components/OrderTable'
 import OrderCalendar from '../components/OrderCalendar'
-
-const Wrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-  margin: 32px 0px;
-`
-
-const CalendarWrapper = styled.div`
-  margin: 16px;
-`
 
 function getFilteredOrders(orders, date) {
   if (orders.length === 0) {
@@ -37,28 +22,6 @@ function getFilteredOrders(orders, date) {
   });
 
   return filteredOrders
-}
-
-function FilterButton(props) {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <Wrapper>
-        <Button
-          color="white"
-          line={true}
-          handleRoute={props.onClickCancel}
-        >
-          Cancel
-        </Button>
-        <Button
-          color="green"
-          handleRoute={props.onClickFilter}
-        >
-          Filter
-        </Button>
-      </Wrapper>
-    </div>
-  )
 }
 
 function Orders(props) {
@@ -108,22 +71,6 @@ function Orders(props) {
           onClickFilter={() => onClickFilter(props.home.orders, { startDate, endDate })}
           {...props}
         />
-        {/* <CalendarWrapper>
-          <Calendar
-            startDate={startDate}
-            endDate={endDate}
-            minDate={minDate}
-            maxDate={maxDate}
-            onChange={(date) => onChange(date)}
-            {...props}
-          >
-            <FilterButton
-              onClickCancel={() => onClickCancel(props.home.orders, { minDate, maxDate })}
-              onClickFilter={() => onClickFilter(props.home.orders, { startDate, endDate })}
-              {...props}
-            />
-          </Calendar>
-        </CalendarWrapper> */}
       </Column>
       <Column width={75}>
         <OrderTable
