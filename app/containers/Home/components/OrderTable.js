@@ -35,8 +35,6 @@ function getStatusColor(status) {
       return 'green'
     case 'canceled':
       return 'red'
-    default:
-      return 'white';
   }
 }
 

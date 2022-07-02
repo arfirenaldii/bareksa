@@ -1,8 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
-import { push } from 'react-router-redux';
 
 import Header from '../index';
 
@@ -21,6 +19,7 @@ describe('<Header />', () => {
     expect(screen.getByRole('img', { name: 'Indicator' })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Settings' })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Shape' })).toBeInTheDocument()
+    expect(screen.getByText('8 April 2021')).toBeInTheDocument()
   });
 
   it('should search', () => {
