@@ -15,6 +15,7 @@ import injectReducer from 'utils/injectReducer';
 
 import Header from 'components/Header'
 import Column from 'components/Column'
+import LoadingIndicator from 'components/LoadingIndicator'
 
 import makeSelectHome from './selectors';
 import reducer from './reducer';
@@ -38,7 +39,7 @@ export class Home extends React.Component {
       <div>
         <Header />
         {this.props.home.loadingFetchOrders ?
-          <div>loading...</div>
+          <LoadingIndicator />
           :
           <div>
             <div style={{ margin: '12px' }}>
