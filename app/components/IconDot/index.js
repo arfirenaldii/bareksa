@@ -9,10 +9,10 @@ import Icon from './images/icon.svg';
 const Wrapper = styled.div`
   display: inline-block;
   padding: 5px 10px;
-  border: solid 1px #E5E5E5;
+  border: solid 1px #e5e5e5;
   border-radius: 4px;
-  cursor: pointer
-`
+  cursor: pointer;
+`;
 
 function IconDot(props) {
   return (

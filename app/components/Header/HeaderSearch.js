@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Img from 'components/Img'
+import Img from 'components/Img';
 
-import Search from './images/search.svg'
+import Search from './images/search.svg';
 
 const StyledForm = styled.form`
   position: relative;
-  border: solid 1px #DDDDDD;
+  border: solid 1px #dddddd;
   border-radius: 4px;
   margin-right: 24px;
 
   display: flex;
   justify-content: space-between;
   width: 296px;
-`
+`;
 
 const StyledInput = styled.input`
   font-family: 'Montserrat', sans-serif;
@@ -28,7 +28,7 @@ const StyledInput = styled.input`
   padding: 16px;
   padding-right: 60px;
   position: relative;
-`
+`;
 
 const StyledImg = styled(Img)`
   padding: 0px 19px;
@@ -36,14 +36,14 @@ const StyledImg = styled(Img)`
   position: absolute;
   right: 0px;
   top: 15px;
-`
+`;
 
 function HeaderSearch() {
-  const [searchText, setSearchText] = React.useState("");
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    alert(searchText)
-  }
+  const [searchText, setSearchText] = React.useState('');
+  const handleSubmit = event => {
+    event.preventDefault();
+    alert(searchText);
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -52,15 +52,11 @@ function HeaderSearch() {
         placeholder="Search text"
         name="search"
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={e => setSearchText(e.target.value)}
       />
-      <StyledImg
-        src={Search}
-        alt="Search"
-        onClick={handleSubmit}
-      />
+      <StyledImg src={Search} alt="Search" onClick={handleSubmit} />
     </StyledForm>
-  )
+  );
 }
 
 export default HeaderSearch;

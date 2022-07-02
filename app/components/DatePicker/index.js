@@ -1,9 +1,9 @@
 import React from 'react';
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
-import './style.css'
+import './style.css';
 
 function CustomDatePicker(props) {
   return (

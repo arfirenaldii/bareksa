@@ -6,7 +6,7 @@ export const Column = styled.div`
 
   @media (min-width: 992px) {
     vertical-align: top;
-    max-width: ${props => props.width + "%"};
+    max-width: ${props => `${props.width}%`};
   }
 `;
 

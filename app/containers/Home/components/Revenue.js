@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { format, getTime } from 'date-fns';
 import MediaQuery from 'react-responsive';
 
-import H5 from 'components/H5'
-import DatePicker from 'components/DatePicker'
+import H5 from 'components/H5';
+import DatePicker from 'components/DatePicker';
 
-import RevenueChart from './RevenueChart'
-import ChartWrapper from './ChartWrapper'
+import RevenueChart from './RevenueChart';
+import ChartWrapper from './ChartWrapper';
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -19,51 +19,54 @@ const TitleWrapper = styled.div`
   @media (max-width: 992px) {
     margin: 0px;
   }
-`
+`;
 
 function getRevenue(orders) {
-  let keyRevenue = []
-  let valueRevenue = []
+  const keyRevenue = [];
+  const valueRevenue = [];
 
   for (let i = 0; i < orders.length; i++) {
-    let keyDate = format(new Date(orders[i].start_date), 'yyyy-MM-dd')
+    const keyDate = format(new Date(orders[i].start_date), 'yyyy-MM-dd');
     if (keyRevenue.includes(keyDate)) {
-      let index = keyRevenue.indexOf(keyDate)
-      valueRevenue[index] += parseInt(orders[i].conversion_revenue)
+      const index = keyRevenue.indexOf(keyDate);
+      valueRevenue[index] += parseInt(orders[i].conversion_revenue);
     } else {
-      keyRevenue.push(keyDate)
-      valueRevenue.push(parseInt(orders[i].conversion_revenue))
+      keyRevenue.push(keyDate);
+      valueRevenue.push(parseInt(orders[i].conversion_revenue));
     }
   }
 
   return {
     key: keyRevenue,
-    value: valueRevenue
-  }
+    value: valueRevenue,
+  };
 }
 
 function getFilteredRevenue(revenue, date) {
   if (revenue.length === 0) {
-    return
+    return;
   }
 
-  let filteredKey = []
-  let filteredRevenue = []
+  const filteredKey = [];
+  const filteredRevenue = [];
   revenue.key.forEach((key, index) => {
-    if (getTime(new Date(key)) >= getTime(new Date(date.startDate)) && getTime(new Date(key)) <= getTime(new Date(date.endDate))) {
-      filteredKey.push(key)
-      filteredRevenue.push(revenue.value[index])
+    if (
+      getTime(new Date(key)) >= getTime(new Date(date.startDate)) &&
+      getTime(new Date(key)) <= getTime(new Date(date.endDate))
+    ) {
+      filteredKey.push(key);
+      filteredRevenue.push(revenue.value[index]);
     }
-  })
+  });
 
   return {
     key: filteredKey,
-    value: filteredRevenue
-  }
+    value: filteredRevenue,
+  };
 }
 
 function Revenue(props) {
-  const [revenue, setRevenue] = useState([])
+  const [revenue, setRevenue] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [minDate, setMinDate] = useState(new Date());
@@ -71,39 +74,51 @@ function Revenue(props) {
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
 
-  const onChange = (dates) => {
+  const onChange = dates => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
 
   useEffect(() => {
-    setRevenue(getRevenue(props.home.orders))
+    setRevenue(getRevenue(props.home.orders));
   }, []);
 
-  useEffect(() => {
-    if (revenue.length !== 0) {
-      let index = revenue.key.length - 1
-      setStartDate(new Date(revenue.key[0]))
-      setEndDate(new Date(revenue.key[index]))
-      setMinDate(new Date(revenue.key[0]))
-      setMaxDate(new Date(revenue.key[index]))
-    }
-  }, [revenue]);
+  useEffect(
+    () => {
+      if (revenue.length !== 0) {
+        const index = revenue.key.length - 1;
+        setStartDate(new Date(revenue.key[0]));
+        setEndDate(new Date(revenue.key[index]));
+        setMinDate(new Date(revenue.key[0]));
+        setMaxDate(new Date(revenue.key[index]));
+      }
+    },
+    [revenue],
+  );
 
-  useEffect(() => {
-    if (endDate !== null && revenue.length !== 0) {
-      let filteredRevenue = getFilteredRevenue(revenue, { startDate, endDate })
-      setLabels(filteredRevenue.key)
-      setData(filteredRevenue.value)
-    }
-  }, [endDate]);
+  useEffect(
+    () => {
+      if (endDate !== null && revenue.length !== 0) {
+        const filteredRevenue = getFilteredRevenue(revenue, {
+          startDate,
+          endDate,
+        });
+        setLabels(filteredRevenue.key);
+        setData(filteredRevenue.value);
+      }
+    },
+    [endDate],
+  );
 
   return (
     <ChartWrapper>
       <TitleWrapper>
         <H5>Revenue</H5>
-        <MediaQuery query="(min-width: 992px)" values={window.testMediaQueryValues}>
+        <MediaQuery
+          query="(min-width: 992px)"
+          values={window.testMediaQueryValues}
+        >
           <DatePicker
             startDate={startDate}
             endDate={endDate}
@@ -114,7 +129,10 @@ function Revenue(props) {
           />
         </MediaQuery>
       </TitleWrapper>
-      <MediaQuery query="(max-width: 992px)" values={window.testMediaQueryValues}>
+      <MediaQuery
+        query="(max-width: 992px)"
+        values={window.testMediaQueryValues}
+      >
         <div style={{ marginBottom: '16px' }}>
           <DatePicker
             startDate={startDate}
@@ -126,13 +144,9 @@ function Revenue(props) {
           />
         </div>
       </MediaQuery>
-      <RevenueChart
-        labels={labels}
-        data={data}
-        {...props}
-      />
+      <RevenueChart labels={labels} data={data} {...props} />
     </ChartWrapper>
-  )
+  );
 }
 
-export default Revenue
+export default Revenue;

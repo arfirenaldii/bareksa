@@ -6,48 +6,52 @@ import H5 from 'components/H5';
 import PSmall from 'components/PSmall';
 import Img from 'components/Img';
 
-import ArrowGreen from '../images/arrow-up-green.svg'
+import ArrowGreen from '../images/arrow-up-green.svg';
 
 function createGradient(ctx) {
   const gradient = ctx.createLinearGradient(0, 0, 0, 200);
 
-  gradient.addColorStop(0, "#789764");
-  gradient.addColorStop(1, "#fff");
+  gradient.addColorStop(0, '#789764');
+  gradient.addColorStop(1, '#fff');
 
   return gradient;
 }
 
 function getTotalRevenue(revenue) {
   if (revenue.length === 0) {
-    return
+    return;
   }
-  return revenue.reduce((sum, cur) => sum + cur)
+  return revenue.reduce((sum, cur) => sum + cur);
 }
 
 function getPercentage(revenue) {
   if (revenue.length === 0) {
-    return ''
+    return '';
   }
-  let lastIndex = revenue.length - 1
-  let percentage = ((revenue[lastIndex] - revenue[0]) / revenue[0]) * 100
-  return percentage.toFixed(2)
+  const lastIndex = revenue.length - 1;
+  const percentage = ((revenue[lastIndex] - revenue[0]) / revenue[0]) * 100;
+  return percentage.toFixed(2);
 }
 
 function Percentage(props) {
   if (Number(getPercentage(props.data)) < 0) {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <PSmall style={{ fontWeight: '500', color: 'red' }}>{`${getPercentage(props.data).replace(".", ",")}%`}</PSmall>
+        <PSmall style={{ fontWeight: '500', color: 'red' }}>{`${getPercentage(
+          props.data,
+        ).replace('.', ',')}%`}</PSmall>
       </div>
-    )
+    );
   }
 
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <Img src={ArrowGreen} alt="Arrow Green" style={{ marginRight: '7px' }} />
-      <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>{`${getPercentage(props.data).replace(".", ",")}%`}</PSmall>
+      <PSmall style={{ fontWeight: '500', color: '#5F9F2F' }}>{`${getPercentage(
+        props.data,
+      ).replace('.', ',')}%`}</PSmall>
     </div>
-  )
+  );
 }
 
 function TotalRevenue(props) {
@@ -57,12 +61,12 @@ function TotalRevenue(props) {
       <H5>{`$${getTotalRevenue(props.data)}`}</H5>
       <Percentage {...props} />
     </div>
-  )
+  );
 }
 
 function RevenueChart(props) {
   const chartRef = useRef(null);
-  const [gradient, setGradient] = useState({})
+  const [gradient, setGradient] = useState({});
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -71,7 +75,7 @@ function RevenueChart(props) {
       return;
     }
 
-    setGradient(createGradient(chart.ctx))
+    setGradient(createGradient(chart.ctx));
   }, []);
 
   const options = {
@@ -80,17 +84,17 @@ function RevenueChart(props) {
     scales: {
       y: {
         grid: {
-          display: false
+          display: false,
         },
         ticks: {
-          callback: function (value) {
-            return `$${value / 1000}k`
+          callback(value) {
+            return `$${value / 1000}k`;
           },
           autoSkip: true,
           maxTicksLimit: 5,
           font: {
-            family: "'Montserrat', sans-serif"
-          }
+            family: "'Montserrat', sans-serif",
+          },
         },
       },
       x: {
@@ -98,26 +102,26 @@ function RevenueChart(props) {
           drawTicks: false,
         },
         ticks: {
-          callback: function (val) {
-            return format(new Date(this.getLabelForValue(val)), 'd MMM')
+          callback(val) {
+            return format(new Date(this.getLabelForValue(val)), 'd MMM');
           },
           autoSkip: true,
           maxTicksLimit: 6,
           font: {
-            family: "'Montserrat', sans-serif"
+            family: "'Montserrat', sans-serif",
           },
           maxRotation: 0,
           minRotation: 0,
         },
-      }
+      },
     },
     elements: {
       line: {
         tension: 0.35,
       },
       point: {
-        radius: 0
-      }
+        radius: 0,
+      },
     },
     plugins: {
       legend: {
@@ -137,20 +141,16 @@ function RevenueChart(props) {
         backgroundColor: gradient,
       },
     ],
-  }
+  };
 
   return (
     <div>
       <div style={{ height: '200px' }}>
-        <LineChart
-          chartRef={chartRef}
-          options={options}
-          data={data}
-        />
+        <LineChart chartRef={chartRef} options={options} data={data} />
       </div>
       <TotalRevenue {...props} />
     </div>
-  )
+  );
 }
 
-export default RevenueChart
+export default RevenueChart;

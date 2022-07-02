@@ -5,7 +5,7 @@ const PSmall = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #9C9C9C;
+  color: #9c9c9c;
   margin: 0px;
 `;
 

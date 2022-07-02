@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Img from 'components/Img'
-import PSmall from 'components/PSmall'
+import Img from 'components/Img';
+import PSmall from 'components/PSmall';
 
-import Shape from './images/shape.svg'
+import Shape from './images/shape.svg';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 8px 16px;
   margin-left: 48px;
-`
+`;
 
 const Icon = styled.div`
   font-weight: 700;
@@ -22,19 +22,19 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(145, 145, 145, 0.1);
-  margin-right: 16px
-`
+  margin-right: 16px;
+`;
 
 const Name = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-`
+`;
 
 const StyledImg = styled(Img)`
   padding: 10px;
   cursor: pointer;
-`
+`;
 
 function HeaderName() {
   return (

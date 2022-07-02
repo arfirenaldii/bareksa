@@ -7,11 +7,11 @@ const Wrapper = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: ${props => props.color};
   border-radius: 4px;
   text-align: center;
-`
+`;
 
 function getColor(color) {
   switch (color) {
@@ -27,9 +27,7 @@ function getColor(color) {
 }
 
 function Label(props) {
-  return (
-    <Wrapper color={getColor(props.color)}>{props.label}</Wrapper>
-  )
+  return <Wrapper color={getColor(props.color)}>{props.label}</Wrapper>;
 }
 
 export default Label;

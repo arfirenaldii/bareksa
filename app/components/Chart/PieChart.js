@@ -6,9 +6,7 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PieChart(props) {
-  return (
-    <Pie options={props.options} data={props.data} />
-  );
+  return <Pie options={props.options} data={props.data} />;
 }
 
 PieChart.propTypes = {

@@ -6,22 +6,20 @@ import Conversion from '../../components/Conversion';
 
 describe('<Conversion />', () => {
   it('should render', () => {
-    let props = {
+    const props = {
       home: {
         loadingFetchOrders: false,
         userCategory: {
-          "risk_averse": "987",
-          "conservative": "750",
-          "moderate": "311",
-          "risk_taker": "473"
-        }
+          risk_averse: '987',
+          conservative: '750',
+          moderate: '311',
+          risk_taker: '473',
+        },
       },
-    }
+    };
 
-    render(
-      <Conversion {...props} />
-    )
+    render(<Conversion {...props} />);
 
-    expect(screen.getByText('Conversion')).toBeInTheDocument()
+    expect(screen.getByText('Conversion')).toBeInTheDocument();
   });
 });

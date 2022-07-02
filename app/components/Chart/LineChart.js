@@ -21,16 +21,12 @@ ChartJS.register(
   Title,
   Tooltip,
   Filler,
-  Legend
+  Legend,
 );
 
 function LineChart(props) {
   return (
-    <Line
-      ref={props.chartRef}
-      options={props.options}
-      data={props.data}
-    />
+    <Line ref={props.chartRef} options={props.options} data={props.data} />
   );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Img from 'components/Img'
+import Img from 'components/Img';
 
-import SettingIcon from './images/settings.svg'
+import SettingIcon from './images/settings.svg';
 
 function Settings() {
   return (

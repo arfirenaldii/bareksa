@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Calendar from 'components/Calendar'
-import Button from 'components/Button'
+import Calendar from 'components/Calendar';
+import Button from 'components/Button';
 
 const ButtonWrapper = styled.div`
   display: inline-flex;
@@ -10,32 +10,25 @@ const ButtonWrapper = styled.div`
   text-align: center;
   gap: 16px;
   margin: 32px 0px;
-`
+`;
 
 const CalendarWrapper = styled.div`
   margin: 16px;
-`
+`;
 
 function FilterButton(props) {
   return (
     <div style={{ textAlign: 'center' }}>
       <ButtonWrapper>
-        <Button
-          color="white"
-          line={true}
-          handleRoute={props.onClickCancel}
-        >
+        <Button color="white" line handleRoute={props.onClickCancel}>
           Cancel
         </Button>
-        <Button
-          color="green"
-          handleRoute={props.onClickFilter}
-        >
+        <Button color="green" handleRoute={props.onClickFilter}>
           Filter
         </Button>
       </ButtonWrapper>
     </div>
-  )
+  );
 }
 
 function OrderCalendar(props) {
@@ -56,7 +49,7 @@ function OrderCalendar(props) {
         />
       </Calendar>
     </CalendarWrapper>
-  )
+  );
 }
 
-export default OrderCalendar
+export default OrderCalendar;

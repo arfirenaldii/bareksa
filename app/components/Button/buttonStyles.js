@@ -17,12 +17,12 @@ const buttonStyles = css`
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
-  border: ${props => props.line ? "1px solid" : "0"};
+  border: ${props => (props.line ? '1px solid' : '0')};
   border-color: ${props => props.color.border};
   background-color: ${props => props.color.backgroundColor};
 
   &:hover {
-    background-color:${props => props.color.hover};
+    background-color: ${props => props.color.hover};
   }
 `;
 

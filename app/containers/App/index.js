@@ -24,10 +24,7 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="Bareksa"
-        defaultTitle="Bareksa"
-      >
+      <Helmet titleTemplate="Bareksa" defaultTitle="Bareksa">
         <meta name="description" content="Bareksa" />
       </Helmet>
       <Switch>

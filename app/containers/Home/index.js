@@ -13,9 +13,9 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import Header from 'components/Header'
-import Column from 'components/Column'
-import LoadingIndicator from 'components/LoadingIndicator'
+import Header from 'components/Header';
+import Column from 'components/Column';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import makeSelectHome from './selectors';
 import reducer from './reducer';
@@ -38,9 +38,9 @@ export class Home extends React.Component {
     return (
       <div>
         <Header />
-        {this.props.home.loadingFetchOrders ?
+        {this.props.home.loadingFetchOrders ? (
           <LoadingIndicator />
-          :
+        ) : (
           <div>
             <div style={{ margin: '12px' }}>
               <Column width={25}>
@@ -55,7 +55,7 @@ export class Home extends React.Component {
             </div>
             <Orders {...this.props} />
           </div>
-        }
+        )}
       </div>
     );
   }

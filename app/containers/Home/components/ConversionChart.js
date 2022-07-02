@@ -11,12 +11,7 @@ function ConversionChart(props) {
     datasets: [
       {
         data: userValues,
-        backgroundColor: [
-          '#725E9C',
-          '#5C8F94',
-          '#EBA45E',
-          '#E4EAEB',
-        ],
+        backgroundColor: ['#725E9C', '#5C8F94', '#EBA45E', '#E4EAEB'],
         borderWidth: 0,
       },
     ],
@@ -33,7 +28,7 @@ function ConversionChart(props) {
           boxWidth: 8,
           font: {
             family: "'Montserrat', sans-serif",
-            size: 12
+            size: 12,
           },
         },
       },
@@ -44,7 +39,7 @@ function ConversionChart(props) {
     <div style={{ height: '256px' }}>
       <PieChart options={options} data={data} />
     </div>
-  )
+  );
 }
 
-export default ConversionChart
+export default ConversionChart;
